@@ -1,4 +1,4 @@
-package com.github.xepozz.gitcodeownersplugin
+package com.github.xepozz.gitcodeowners
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
