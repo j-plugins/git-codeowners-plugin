@@ -54,6 +54,11 @@
         <completion.contributor
                 language="Codeowners"
                 implementationClass="com.github.xepozz.gitcodeowners.ide.completion.CodeownersCompletionContributor"/>
+        <codeInsight.lineMarkerProvider
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersLineMarkerProvider"/>
+        <highlightRangeExtension
+                implementation="com.github.xepozz.gitcodeowners.ide.IgnoreHighlightRangeExtension" />
 
         <!--        <intentionAction>-->
         <!--            <language>Codeowners</language>-->

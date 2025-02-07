@@ -1,12 +1,17 @@
 package com.github.xepozz.gitcodeowners.ide.reference
 
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
+import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.patterns.PlatformPatterns
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiFileSystemItem
+import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiReference
 import com.intellij.psi.PsiReferenceContributor
 import com.intellij.psi.PsiReferenceProvider
 import com.intellij.psi.PsiReferenceRegistrar
+import com.intellij.psi.impl.file.PsiDirectoryImpl
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet
 import com.intellij.util.ProcessingContext
 
@@ -26,10 +31,21 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
             psiElement: PsiElement,
             processingContext: ProcessingContext
         ): Array<out PsiReference> {
+            val project = psiElement.project
+            val projectPsi = PsiManager.getInstance(project).findDirectory(project.baseDir)
             return when (psiElement) {
                 is CodeownersPattern -> {
-                    val result = FileReferenceSet(psiElement).allReferences
-                    println("result: ${result.toList().map { println("it: $it") }}")
+                    val referenceSet = object : FileReferenceSet(psiElement) {
+                        override fun computeDefaultContexts(): Collection<PsiFileSystemItem?> {
+                            return listOf(projectPsi)
+                            if (element.text.startsWith("/")) {
+                                return listOf(projectPsi)
+                            }
+                            return super.computeDefaultContexts()
+                        }
+                    }
+                    val result = referenceSet.allReferences
+//                    println("result: ${result.toList().map { println("it: $it") }}")
 
                     result
                 }
