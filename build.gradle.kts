@@ -16,7 +16,7 @@ version = providers.gradleProperty("pluginVersion").get()
 sourceSets {
     main {
         java {
-            srcDirs("src/main/kotlin", "src/main/gen")
+            srcDirs("src/main/java", "src/main/gen")
         }
     }
 }
