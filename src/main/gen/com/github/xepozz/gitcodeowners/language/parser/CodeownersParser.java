@@ -48,14 +48,31 @@ public class CodeownersParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // unary_definition
+  // pattern team+
   public static boolean definition(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "definition")) return false;
     if (!nextTokenIs(b, TEXT)) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, DEFINITION, null);
+    r = pattern(b, l + 1);
+    p = r; // pin = 1
+    r = r && definition_1(b, l + 1);
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  // team+
+  private static boolean definition_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "definition_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = unary_definition(b, l + 1);
-    exit_section_(b, m, DEFINITION, r);
+    r = team(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!team(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "definition_1", c)) break;
+    }
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -103,34 +120,6 @@ public class CodeownersParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, TEXT);
     exit_section_(b, m, TEAM, r);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // pattern team+
-  public static boolean unary_definition(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "unary_definition")) return false;
-    if (!nextTokenIs(b, TEXT)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = pattern(b, l + 1);
-    r = r && unary_definition_1(b, l + 1);
-    exit_section_(b, m, UNARY_DEFINITION, r);
-    return r;
-  }
-
-  // team+
-  private static boolean unary_definition_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "unary_definition_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = team(b, l + 1);
-    while (r) {
-      int c = current_position_(b);
-      if (!team(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "unary_definition_1", c)) break;
-    }
-    exit_section_(b, m, null, r);
     return r;
   }
 

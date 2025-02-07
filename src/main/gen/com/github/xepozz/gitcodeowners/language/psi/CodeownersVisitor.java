@@ -24,10 +24,6 @@ public class CodeownersVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitUnaryDefinition(@NotNull CodeownersUnaryDefinition o) {
-    visitPsiElement(o);
-  }
-
   public void visitNavigatablePsiElement(@NotNull NavigatablePsiElement o) {
     visitElement(o);
   }

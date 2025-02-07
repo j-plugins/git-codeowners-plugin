@@ -29,8 +29,14 @@ public class CodeownersDefinitionImpl extends ASTWrapperPsiElement implements Co
 
   @Override
   @NotNull
-  public CodeownersUnaryDefinition getUnaryDefinition() {
-    return findNotNullChildByClass(CodeownersUnaryDefinition.class);
+  public CodeownersPattern getPattern() {
+    return findNotNullChildByClass(CodeownersPattern.class);
+  }
+
+  @Override
+  @NotNull
+  public List<CodeownersTeam> getTeamList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, CodeownersTeam.class);
   }
 
 }

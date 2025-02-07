@@ -12,7 +12,6 @@ public interface CodeownersTypes {
   IElementType DEFINITION = new CodeownersElementType("DEFINITION");
   IElementType PATTERN = new CodeownersElementType("PATTERN");
   IElementType TEAM = new CodeownersElementType("TEAM");
-  IElementType UNARY_DEFINITION = new CodeownersElementType("UNARY_DEFINITION");
 
   IElementType EOL = new CodeownersTokenType("EOL");
   IElementType SINGLE_COMMENT = new CodeownersTokenType("SINGLE_COMMENT");
@@ -32,9 +31,6 @@ public interface CodeownersTypes {
       }
       else if (type == TEAM) {
         return new CodeownersTeamImpl(node);
-      }
-      else if (type == UNARY_DEFINITION) {
-        return new CodeownersUnaryDefinitionImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

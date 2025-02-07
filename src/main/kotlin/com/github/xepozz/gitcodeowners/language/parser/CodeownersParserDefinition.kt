@@ -19,7 +19,7 @@ internal class CodeownersParserDefinition : ParserDefinition {
 
     override fun getWhitespaceTokens(): TokenSet = CodeownersTokenSets.WHITESPACES
 
-    override fun getStringLiteralElements(): TokenSet = CodeownersTokenSets.STRING_LITERALS
+    override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
     override fun createParser(project: Project?) = CodeownersParser()
 

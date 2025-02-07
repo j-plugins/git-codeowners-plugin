@@ -19,60 +19,15 @@ file ::= item_*
 
 private item_ ::= (definition | COMMENT | EOL)
 
-definition ::= unary_definition
-unary_definition ::= pattern team+
+definition ::= pattern team+
+{
+    pin=1
+}
 pattern ::= TEXT
 {
     implements=["com.intellij.psi.NavigatablePsiElement"]
     extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersPatternBaseImpl"
 }
 team ::= TEXT
-//
-//cronExpression ::= (SCHEDULE COMMAND)
-//{
-//    pin=1
-//    implements=["com.intellij.psi.NavigatablePsiElement"]
-//}
-//
-//variableDefinition ::= (VARIABLE_NAME EQUAL_SIGN VARIABLE_VALUE)
-//{
-//    pin=1
-//    implements=["com.intellij.psi.NavigatablePsiElement"]
-//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersVariableBaseImpl"
-//}
-//VARIABLE_NAME ::= IDENTIFIER
-//VARIABLE_VALUE ::= CONTENT
-//
-//SCHEDULE ::= TIME_POINTER TIME_POINTER TIME_POINTER TIME_POINTER TIME_POINTER
-//{
-//    pin=1
-//    implements=["com.intellij.psi.NavigatablePsiElement"]
-//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersScheduleBaseImpl"
-//}
-//
-//TIME_POINTER ::= TIME_LIST
-//TIME_LIST ::= TIME_LIST_ITEM (COMMA TIME_LIST_ITEM)*
-//
-//TIME_LIST_ITEM ::= TIME_RANGE_STEP | TIME_RANGE | TIME_EXACT | TIME_ANY
-//
-//TIME_RANGE_STEP ::= (TIME_RANGE | TIME_EXACT | TIME_ANY) SLASH NUMBER
-//{
-//    pin=2
-//}
-//
-//TIME_RANGE ::= NUMBER HYPHEN NUMBER
-//{
-//    pin=2
-//    implements=["com.intellij.psi.NavigatablePsiElement"]
-//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersTimeRangeBaseImpl"
-//    methods=[getFirst getSecond getIntRange]
-//}
-//TIME_ANY ::= STAR
-//TIME_EXACT ::= NUMBER
-//
-//COMMAND ::= CONTENT
-//{
-//    implements=["com.intellij.psi.NavigatablePsiElement" "com.intellij.psi.PsiLanguageInjectionHost"]
-//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersPatternBaseImpl/}
 
 COMMENT ::= SINGLE_COMMENT

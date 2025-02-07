@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface CodeownersDefinition extends PsiElement {
 
   @NotNull
-  CodeownersUnaryDefinition getUnaryDefinition();
+  CodeownersPattern getPattern();
+
+  @NotNull
+  List<CodeownersTeam> getTeamList();
 
 }

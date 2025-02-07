@@ -1,6 +1,6 @@
 package com.github.xepozz.gitcodeowners.language.psi.impl//package com.github.xepozz.gitcodeowners.language.psi.impl
 //
-//import com.github.xepozz.gitcodeowners.language.CodeownersAnnotator
+//import com.github.xepozz.gitcodeowners.language.CodeownersLineMarkerProvider
 //import com.github.xepozz.gitcodeowners.language.psi.CodeownersSchedule
 //import com.intellij.extapi.psi.ASTWrapperPsiElement
 //import com.intellij.icons.AllIcons
@@ -12,7 +12,7 @@ package com.github.xepozz.gitcodeowners.language.psi.impl//package com.github.xe
 //
 //    override fun getText() = this.node.text
 //
-//    override fun getPresentation() = PresentationData(text, null, getIcon(0), CodeownersAnnotator.SCHEDULE_HIGHLIGHT)
+//    override fun getPresentation() = PresentationData(text, null, getIcon(0), CodeownersLineMarkerProvider.SCHEDULE_HIGHLIGHT)
 //
 //    override fun getIcon(flags: Int) = AllIcons.Nodes.DataTables
 //}
