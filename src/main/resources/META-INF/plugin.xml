@@ -11,51 +11,54 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType
                 name="Git Codeowners File"
-                implementationClass="com.github.xepozz.gitcodeowners.language.GitCodeownersFileType"
+                implementationClass="com.github.xepozz.gitcodeowners.language.CodeownersFileType"
                 fieldName="INSTANCE"
                 extensions=""
-                language="GitCodeowners"
+                language="Codeowners"
                 fileNames="CODEOWNERS"
         />
         <lang.parserDefinition
-                language="GitCodeowners"
-                implementationClass="com.github.xepozz.gitcodeowners.language.parser.GitCodeownersParserDefinition"/>
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.language.parser.CodeownersParserDefinition"/>
         <lang.syntaxHighlighterFactory
-                language="GitCodeowners"
-                implementationClass="com.github.xepozz.gitcodeowners.language.GitCodeownersSyntaxHighlighterFactory"/>
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.language.CodeownersSyntaxHighlighterFactory"/>
         <annotator
-                language="GitCodeowners"
-                implementationClass="com.github.xepozz.gitcodeowners.language.GitCodeownersAnnotator"/>
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.language.CodeownersAnnotator"/>
         <multiHostInjector
-                implementation="com.github.xepozz.gitcodeowners.language.GitCodeownersLanguageInjector"/>
+                implementation="com.github.xepozz.gitcodeowners.language.CodeownersLanguageInjector"/>
 
         <!--        <lang.psiStructureViewFactory-->
-        <!--                language="GitCodeowners"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.structureView.GitCodeownersStructureViewFactory"/>-->
+        <!--                language="Codeowners"-->
+        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.structureView.CodeownersStructureViewFactory"/>-->
         <!--        <lang.documentationProvider-->
-        <!--                language="GitCodeowners"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.documentation.GitCodeownersDocumentationProvider"/>-->
+        <!--                language="Codeowners"-->
+        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.documentation.CodeownersDocumentationProvider"/>-->
         <!--        <runLineMarkerContributor-->
-        <!--                language="GitCodeowners"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.GitCodeownersRunCommandMarkerContributor"/>-->
+        <!--                language="Codeowners"-->
+        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersRunCommandMarkerContributor"/>-->
         <!--        <lang.foldingBuilder-->
-        <!--                language="GitCodeowners"-->
+        <!--                language="Codeowners"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CronScheduleFoldingBuilder"/>-->
         <lang.commenter
-                language="GitCodeowners"
-                implementationClass="com.github.xepozz.gitcodeowners.ide.GitCodeownersCommenter"/>
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersCommenter"/>
         <!--        <localInspection-->
-        <!--                language="GitCodeowners" enabledByDefault="true" level="ERROR"-->
-        <!--                groupName="GitCodeowners schedule" displayName="GitCodeowners schedule"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.inspections.GitCodeownersScheduleTimeRangeInspection"/>-->
+        <!--                language="Codeowners" enabledByDefault="true" level="ERROR"-->
+        <!--                groupName="Codeowners schedule" displayName="Codeowners schedule"-->
+        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.inspections.CodeownersScheduleTimeRangeInspection"/>-->
         <psi.referenceContributor
-                language="GitCodeowners"
+                language="Codeowners"
                 implementation="com.github.xepozz.gitcodeowners.ide.reference.CodeownersReferenceContributor"/>
+        <completion.contributor
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.ide.completion.CodeownersCompletionContributor"/>
 
         <!--        <intentionAction>-->
-        <!--            <language>GitCodeowners</language>-->
-        <!--            <className>com.github.xepozz.gitcodeowners.ide.actions.GitCodeownersGuruIntention</className>-->
-        <!--            <category>GitCodeowners intentions</category>-->
+        <!--            <language>Codeowners</language>-->
+        <!--            <className>com.github.xepozz.gitcodeowners.ide.actions.CodeownersGuruIntention</className>-->
+        <!--            <category>Codeowners intentions</category>-->
         <!--        </intentionAction>-->
     </extensions>
 </idea-plugin>

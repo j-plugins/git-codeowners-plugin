@@ -1,7 +1,6 @@
 package com.github.xepozz.gitcodeowners.ide.reference
 
-import com.github.xepozz.gitcodeowners.language.GitCodeownersFile
-import com.github.xepozz.gitcodeowners.language.psi.GitCodeownersPattern
+import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
@@ -15,8 +14,8 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
     override fun registerReferenceProviders(psiReferenceRegistrar: PsiReferenceRegistrar) {
         psiReferenceRegistrar.registerReferenceProvider(
             PlatformPatterns.psiElement()
-//            PlatformPatterns.psiElement(GitCodeownersPattern::class.java)
-//                .inFile(PlatformPatterns.psiFile(GitCodeownersFile::class.java))
+//            PlatformPatterns.psiElement(CodeownersPattern::class.java)
+//                .inFile(PlatformPatterns.psiFile(CodeownersFile::class.java))
             ,
             IgnoreReferenceProvider()
         )
@@ -27,9 +26,13 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
             psiElement: PsiElement,
             processingContext: ProcessingContext
         ): Array<out PsiReference> {
-            println("psi element:: $psiElement")
             return when (psiElement) {
-                is GitCodeownersPattern -> FileReferenceSet(psiElement).allReferences
+                is CodeownersPattern -> {
+                    val result = FileReferenceSet(psiElement).allReferences
+                    println("result: ${result.toList().map { println("it: $it") }}")
+
+                    result
+                }
                 else -> PsiReference.EMPTY_ARRAY
             }
         }
