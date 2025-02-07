@@ -1,4 +1,9 @@
-package com.github.xepozz.gitcodeowners.language.psi.impl//package com.github.xepozz.gitcodeowners.language.psi.impl
+package com.github.xepozz.gitcodeowners.language.psi.impl
+
+import com.intellij.psi.PsiReference
+import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry
+
+//package com.github.xepozz.gitcodeowners.language.psi.impl
 //
 //import com.github.xepozz.gitcodeowners.language.psi.GitCodeownersTimeRange
 //
@@ -11,4 +16,6 @@ package com.github.xepozz.gitcodeowners.language.psi.impl//package com.github.xe
 //
 //    @JvmStatic
 //    fun getIntRange(element: GitCodeownersTimeRange): IntRange = IntRange(element.first, element.second)
+//
+//    fun getReferences(): Array<PsiReference> = ReferenceProvidersRegistry.getReferencesFromProviders(this)
 //}

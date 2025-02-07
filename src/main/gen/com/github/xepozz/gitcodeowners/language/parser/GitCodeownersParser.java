@@ -32,7 +32,7 @@ public class GitCodeownersParser implements PsiParser, LightPsiParser {
   }
 
   static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return gitattributesFile(b, l + 1);
+    return gitcodeownersFile(b, l + 1);
   }
 
   /* ********************************************************** */
@@ -61,12 +61,12 @@ public class GitCodeownersParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // item_*
-  static boolean gitattributesFile(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "gitattributesFile")) return false;
+  static boolean gitcodeownersFile(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "gitcodeownersFile")) return false;
     while (true) {
       int c = current_position_(b);
       if (!item_(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "gitattributesFile", c)) break;
+      if (!empty_element_parsed_guard_(b, "gitcodeownersFile", c)) break;
     }
     return true;
   }
@@ -96,14 +96,27 @@ public class GitCodeownersParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // TEXT
+  // {
+  // //    implements=["com.intellij.psi.NavigatablePsiElement"]
+  // //    extends="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersPatternBaseImpl"
+  // }
   public static boolean pattern(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "pattern")) return false;
     if (!nextTokenIs(b, TEXT)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, TEXT);
+    r = r && pattern_1(b, l + 1);
     exit_section_(b, m, PATTERN, r);
     return r;
+  }
+
+  // {
+  // //    implements=["com.intellij.psi.NavigatablePsiElement"]
+  // //    extends="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersPatternBaseImpl"
+  // }
+  private static boolean pattern_1(PsiBuilder b, int l) {
+    return true;
   }
 
   /* ********************************************************** */

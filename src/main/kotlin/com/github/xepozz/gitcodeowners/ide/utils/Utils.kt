@@ -1,0 +1,121 @@
+//package com.github.xepozz.gitcodeowners.ide.utils
+//
+//import com.intellij.openapi.editor.Document
+//import com.intellij.openapi.editor.Editor
+//import com.intellij.openapi.editor.EditorFactory
+//import com.intellij.openapi.editor.colors.EditorColors
+//import com.intellij.openapi.editor.ex.EditorEx
+//import com.intellij.openapi.fileEditor.FileEditorManager
+//import com.intellij.openapi.module.Module
+//import com.intellij.openapi.module.ModuleManager
+//import com.intellij.openapi.module.ModuleType
+//import com.intellij.openapi.project.Project
+//import com.intellij.openapi.project.guessProjectDir
+//import com.intellij.openapi.roots.ModuleRootManager
+//import com.intellij.openapi.util.text.StringUtil
+//import com.intellij.openapi.vfs.VfsUtilCore
+//import com.intellij.openapi.vfs.VirtualFile
+//import com.intellij.psi.PsiFile
+//import com.intellij.psi.PsiManager
+//
+//object Utils {
+//
+//    /**
+//     * Gets relative path of given @{link VirtualFile} and root directory.
+//     *
+//     * @param directory root directory
+//     * @param file      file to get it's path
+//     * @return relative path
+//     */
+//    fun getRelativePath(directory: VirtualFile, file: VirtualFile) =
+//        VfsUtilCore.getRelativePath(file, directory, '/')?.let {
+//            it + ('/'.takeIf { file.isDirectory } ?: "")
+//        }
+//
+//    /**
+//     * Finds [PsiFile] for the given [VirtualFile] instance. If file is outside current project,
+//     * it's required to create new [PsiFile] manually.
+//     *
+//     * @param project     current project
+//     * @param virtualFile to handle
+//     * @return [PsiFile] instance
+//     */
+//    fun getPsiFile(project: Project, virtualFile: VirtualFile) =
+//        PsiManager.getInstance(project).run {
+//            findFile(virtualFile) ?: findViewProvider(virtualFile)?.let {
+//                obtainLanguage(virtualFile)?.createFile(it)
+//            }
+//        }
+//
+//    /**
+//     * Opens given file in editor.
+//     *
+//     * @param project current project
+//     * @param file    file to open
+//     */
+//    fun openFile(project: Project, file: PsiFile) {
+//        FileEditorManager.getInstance(project).openFile(file.virtualFile, true)
+//    }
+//
+//    /**
+//     * Checks if given directory is VCS directory.
+//     *
+//     * @param directory to check
+//     * @return given file is VCS directory
+//     */
+//    fun isVcsDirectory(directory: VirtualFile) = when {
+//        !directory.isDirectory -> false
+//        else -> IgnoreBundle.VCS_LANGUAGES.find {
+//            directory.name == it.vcsDirectory && IgnoreBundle.ENABLED_LANGUAGES[it.fileType] ?: false
+//        } != null
+//    }
+//
+//    /**
+//     * Gets list of words for given [String] excluding special characters.
+//     *
+//     * @param filter input string
+//     * @return list of words without special characters
+//     */
+//    fun getWords(filter: String) = filter.lowercase().split("\\W+").filter(String::isNotEmpty)
+//
+//    /**
+//     * Checks if lists are equal.
+//     *
+//     * @param l1 first list
+//     * @param l2 second list
+//     * @return lists are equal
+//     */
+//    fun equalLists(l1: List<*>, l2: List<*>) = l1.size == l2.size && l1.containsAll(l2) && l2.containsAll(l1)
+//
+//    /**
+//     * Searches for the module in the project that contains given file.
+//     *
+//     * @param file    file
+//     * @param project project
+//     * @return module containing passed file or null
+//     */
+//    fun getModuleForFile(file: VirtualFile, project: Project): Module? =
+//        ModuleManager.getInstance(project).modules.find { it.moduleContentScope.contains(file) }
+//
+//    fun getModuleRootForFile(file: VirtualFile, project: Project): VirtualFile? {
+//        val module = getModuleForFile(file, project)
+//        return when {
+//            module == null || ModuleType.isInternal(module) -> project.guessProjectDir()
+//            else -> {
+//                val roots = ModuleRootManager.getInstance(module).contentRoots
+//                roots.first { it.isDirectory }
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Checks if file is in project directory.
+//     *
+//     * @param file    file
+//     * @param project project
+//     * @return file is under directory
+//     */
+//    fun isInProject(file: VirtualFile, project: Project) =
+//        getModuleForFile(file, project) != null || StringUtil.startsWith(file.url, "temp://")
+//
+//}

@@ -22,6 +22,10 @@ private item_ ::= (definition | COMMENT | EOL)
 definition ::= unary_definition
 unary_definition ::= pattern parameter+
 pattern ::= TEXT
+{
+//    implements=["com.intellij.psi.NavigatablePsiElement"]
+//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersPatternBaseImpl"
+}
 parameter ::= TEXT
 //
 //cronExpression ::= (SCHEDULE COMMAND)
@@ -69,7 +73,7 @@ parameter ::= TEXT
 //COMMAND ::= CONTENT
 //{
 //    implements=["com.intellij.psi.NavigatablePsiElement" "com.intellij.psi.PsiLanguageInjectionHost"]
-//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersCommandBaseImpl"
+//    extends="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersPatternBaseImpl"
 //}
 
 COMMENT ::= SINGLE_COMMENT
