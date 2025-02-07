@@ -15,7 +15,7 @@
 //  psiImplUtilClass="com.github.xepozz.gitcodeowners.language.psi.impl.GitCodeownersImplUtil"
 }
 
-gitcodeownersFile ::= item_*
+gitCodeownersFile ::= item_*
 
 private item_ ::= (definition | COMMENT | EOL)
 
