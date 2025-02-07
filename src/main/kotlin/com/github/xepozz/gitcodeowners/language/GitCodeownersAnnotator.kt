@@ -47,23 +47,23 @@ class GitCodeownersAnnotator : Annotator {
 
     companion object {
         val PATTERN_HIGHLIGHT = TextAttributesKey.createTextAttributesKey(
-            "GITATTRIBUTES_PATTERN",
+            "GITCODEOWNERS_PATTERN",
             DefaultLanguageHighlighterColors.STRING,
         )
         private val PARAMETERS_HIGHLIGHT = TextAttributesKey.createTextAttributesKey(
-            "GITATTRIBUTES_IDENTIFIER",
+            "GITCODEOWNERS_IDENTIFIER",
             DefaultLanguageHighlighterColors.KEYWORD,
         )
 //        private val STRING_HIGHLIGHT = TextAttributesKey.createTextAttributesKey(
-//            "GITATTRIBUTES_STRING",
+//            "GITCODEOWNERS_STRING",
 //            DefaultLanguageHighlighterColors.STRING,
 //        )
 //        private val OPERATION_HIGHLIGHT = TextAttributesKey.createTextAttributesKey(
-//            "GITATTRIBUTES_OPERATION",
+//            "GITCODEOWNERS_OPERATION",
 //            DefaultLanguageHighlighterColors.OPERATION_SIGN,
 //        )
 //        private val COMMAND_HIGHLIGHT = TextAttributesKey.createTextAttributesKey(
-//            "GITATTRIBUTES_COMMAND",
+//            "GITCODEOWNERS_COMMAND",
 //            DefaultLanguageHighlighterColors.STRING,
 //        )
     }

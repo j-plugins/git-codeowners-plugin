@@ -32,7 +32,7 @@ public class GitCodeownersParser implements PsiParser, LightPsiParser {
   }
 
   static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return gitattributesFile(b, l + 1);
+    return gitCodeownersFile(b, l + 1);
   }
 
   /* ********************************************************** */
@@ -61,12 +61,12 @@ public class GitCodeownersParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // item_*
-  static boolean gitattributesFile(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "gitattributesFile")) return false;
+  static boolean gitCodeownersFile(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "gitCodeownersFile")) return false;
     while (true) {
       int c = current_position_(b);
       if (!item_(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "gitattributesFile", c)) break;
+      if (!empty_element_parsed_guard_(b, "gitCodeownersFile", c)) break;
     }
     return true;
   }

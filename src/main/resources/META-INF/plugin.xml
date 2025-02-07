@@ -10,9 +10,10 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
-                name="Git Attributes File"
+                name="Git Codeowners File"
                 implementationClass="com.github.xepozz.gitcodeowners.language.GitCodeownersFileType"
                 fieldName="INSTANCE"
+                extensions=""
                 language="GitCodeowners"
                 fileNames="CODEOWNERS"
         />
@@ -47,6 +48,9 @@
         <!--                language="GitCodeowners" enabledByDefault="true" level="ERROR"-->
         <!--                groupName="GitCodeowners schedule" displayName="GitCodeowners schedule"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.inspections.GitCodeownersScheduleTimeRangeInspection"/>-->
+<!--        <psi.referenceContributor-->
+<!--                language="GitCodeowners"-->
+<!--                implementation="com.github.xepozz.gitcodeowners.ide.reference.CodeownersReferenceContributor"/>-->
 
         <!--        <intentionAction>-->
         <!--            <language>GitCodeowners</language>-->

@@ -16,7 +16,7 @@ version = providers.gradleProperty("pluginVersion").get()
 sourceSets {
     main {
         java {
-            srcDirs("src/main/java", "src/main/gen")
+            srcDirs("src/main/kotlin", "src/main/gen")
         }
     }
 }
@@ -49,7 +49,6 @@ dependencies {
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
-        instrumentationTools()
         pluginVerifier()
         zipSigner()
         testFramework(TestFrameworkType.Platform)
