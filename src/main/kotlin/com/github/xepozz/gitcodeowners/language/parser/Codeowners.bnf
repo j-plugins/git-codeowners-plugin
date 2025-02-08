@@ -29,5 +29,9 @@ pattern ::= TEXT
     extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersPatternBaseImpl"
 }
 team ::= TEXT
+{
+    implements=["com.intellij.psi.NavigatablePsiElement"]
+    extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersTeamBaseImpl"
+}
 
 COMMENT ::= SINGLE_COMMENT

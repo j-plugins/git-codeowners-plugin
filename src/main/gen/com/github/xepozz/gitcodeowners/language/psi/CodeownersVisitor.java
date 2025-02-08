@@ -21,7 +21,7 @@ public class CodeownersVisitor extends PsiElementVisitor {
   }
 
   public void visitTeam(@NotNull CodeownersTeam o) {
-    visitPsiElement(o);
+    visitNavigatablePsiElement(o);
   }
 
   public void visitNavigatablePsiElement(@NotNull NavigatablePsiElement o) {

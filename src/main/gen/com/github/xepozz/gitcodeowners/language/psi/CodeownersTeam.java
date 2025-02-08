@@ -4,7 +4,8 @@ package com.github.xepozz.gitcodeowners.language.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.NavigatablePsiElement;
 
-public interface CodeownersTeam extends PsiElement {
+public interface CodeownersTeam extends NavigatablePsiElement {
 
 }

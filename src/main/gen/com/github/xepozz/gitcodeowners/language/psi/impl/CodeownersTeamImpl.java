@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.xepozz.gitcodeowners.language.psi.CodeownersTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.xepozz.gitcodeowners.language.psi.*;
 
-public class CodeownersTeamImpl extends ASTWrapperPsiElement implements CodeownersTeam {
+public class CodeownersTeamImpl extends CodeownersTeamBaseImpl implements CodeownersTeam {
 
   public CodeownersTeamImpl(@NotNull ASTNode node) {
     super(node);
