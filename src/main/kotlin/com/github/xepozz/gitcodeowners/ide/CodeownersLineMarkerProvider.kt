@@ -19,7 +19,7 @@ class CodeownersLineMarkerProvider : RelatedItemLineMarkerProvider() {
     ) {
         when (element) {
             is CodeownersPattern -> {
-                val target = element.references.firstNotNullOf { it.resolve() }
+                val target = element.references.firstNotNullOfOrNull { it.resolve() }
 //                println("target: $target")
                 if (target !is PsiFile) {
                     return

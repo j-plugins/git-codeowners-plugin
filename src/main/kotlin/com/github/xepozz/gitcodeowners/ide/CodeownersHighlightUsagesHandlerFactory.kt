@@ -32,7 +32,7 @@ class CodeownersHighlightUsagesHandlerFactory : HighlightUsagesHandlerFactoryBas
 
         override fun computeUsages(targets: List<CodeownersElementImpl>) =
             targets
-                .filter { it::class == target::class && it.text == target.text }
+                .filter { it::class == target.parent::class && it.text == target.text }
                 .forEach(::addOccurrence)
     }
 }

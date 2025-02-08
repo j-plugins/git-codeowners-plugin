@@ -3,7 +3,9 @@ package com.github.xepozz.gitcodeowners.ide.reference
 import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTeam
+import com.intellij.ide.impl.ProjectUtil
 import com.intellij.openapi.paths.PathReferenceManager
+import com.intellij.openapi.projectRoots.impl.ProjectRootUtil
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileSystemItem
@@ -37,7 +39,7 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
             processingContext: ProcessingContext
         ): Array<out PsiReference> {
             val project = psiElement.project
-            val projectPsi = PsiManager.getInstance(project).findDirectory(project.baseDir)
+            val projectPsi = ProjectRootUtil.getAllContentRoots(project).firstOrNull() ?: return emptyArray()
 
             return when (psiElement) {
                 is CodeownersPattern -> {
