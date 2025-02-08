@@ -1,7 +1,9 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# git-codeowners-plugin Changelog
+# Git Codeowners Changelog
 
 ## [Unreleased]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+- feat: group autocompletion
+- feat: same group highlighting
+- feat: syntax highlighting
