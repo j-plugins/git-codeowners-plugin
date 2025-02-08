@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- feat: direct file reference navigation
 - feat: group autocompletion
 - feat: same group highlighting
 - feat: syntax highlighting
