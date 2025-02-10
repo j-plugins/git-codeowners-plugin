@@ -6,6 +6,8 @@
 
 <!-- Plugin description -->
 
+[GitHub](https://github.com/xepozz/git-codeowners-intellij-plugin) | [Telegram](https://t.me/xepozz)
+
 ## CODEOWNERS support
 
 CODEOWNERS syntax support:
