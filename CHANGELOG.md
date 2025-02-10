@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- feat: complete user emails
 - feat: direct file reference navigation
 - feat: group autocompletion
 - feat: same group highlighting
