@@ -6,7 +6,7 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 class CodeownersFileType private constructor() : LanguageFileType(CodeownersLanguage.INSTANCE) {
     override fun getName() = "Git Codeowners File"
 
-    override fun getDescription() = "Git Codeowners language file"
+    override fun getDescription() = "Git Codeowners language"
 
     override fun getDefaultExtension() = ""
 
