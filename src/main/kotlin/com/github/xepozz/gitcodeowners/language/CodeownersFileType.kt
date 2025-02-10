@@ -13,6 +13,7 @@ class CodeownersFileType private constructor() : LanguageFileType(CodeownersLang
     override fun getIcon() = CodeownersIcons.FILE
 
     companion object {
+        @JvmStatic
         val INSTANCE = CodeownersFileType()
     }
 }
