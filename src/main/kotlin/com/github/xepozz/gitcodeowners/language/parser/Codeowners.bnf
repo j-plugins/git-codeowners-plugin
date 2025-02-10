@@ -19,7 +19,7 @@ file ::= item_*
 
 private item_ ::= (definition | COMMENT | EOL)
 
-definition ::= pattern team+
+definition ::= pattern team*
 {
     pin=1
 }
