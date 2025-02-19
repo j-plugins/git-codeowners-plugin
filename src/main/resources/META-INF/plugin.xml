@@ -33,15 +33,15 @@
         <!--        <lang.psiStructureViewFactory-->
         <!--                language="Codeowners"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.structureView.CodeownersStructureViewFactory"/>-->
-        <!--        <lang.documentationProvider-->
-        <!--                language="Codeowners"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.documentation.CodeownersDocumentationProvider"/>-->
         <!--        <runLineMarkerContributor-->
         <!--                language="Codeowners"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersRunCommandMarkerContributor"/>-->
         <!--        <lang.foldingBuilder-->
         <!--                language="Codeowners"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CronScheduleFoldingBuilder"/>-->
+        <lang.documentationProvider
+                language="Codeowners"
+                implementationClass="com.github.xepozz.gitcodeowners.ide.documentation.CodeownersDocumentationProvider"/>
         <lang.commenter
                 language="Codeowners"
                 implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersCommenter"/>
