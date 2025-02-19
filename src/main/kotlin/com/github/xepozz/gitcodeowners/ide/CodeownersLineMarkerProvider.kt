@@ -1,6 +1,5 @@
 package com.github.xepozz.gitcodeowners.ide
 
-import com.github.xepozz.gitcodeowners.CodeownersIcons
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
@@ -10,6 +9,7 @@ import com.intellij.icons.AllIcons
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import com.intellij.psi.PsiFileSystemItem
 
 class CodeownersLineMarkerProvider : RelatedItemLineMarkerProvider() {
 
@@ -19,15 +19,12 @@ class CodeownersLineMarkerProvider : RelatedItemLineMarkerProvider() {
     ) {
         when (element) {
             is CodeownersPattern -> {
-                val target = element.references.firstNotNullOfOrNull { it.resolve() }
+                val target = element.references.firstNotNullOfOrNull { it.resolve() } as? PsiFileSystemItem ?: return
 //                println("target: $target")
-                if (target !is PsiFile) {
-                    return
-                }
 
                 val builder = NavigationGutterIconBuilder.create(target.getIcon(0) ?: AllIcons.Nodes.Target)
                     .setTargets(target)
-                    .setTooltipText("Navigate to ${target.text}")
+                    .setTooltipText("Navigate to ${target.name}")
 
                 result.add(builder.createLineMarkerInfo(element))
             }
