@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.7] - 2025-02-20
+
+- feat: add documentation builder (comment folder)
+
 ## [2025.0.6] - 2025-02-17
 
 - feat: complete user emails
