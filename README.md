@@ -6,7 +6,7 @@
 
 <!-- Plugin description -->
 
-[GitHub](https://github.com/xepozz/git-codeowners-intellij-plugin) | [Telegram](https://t.me/xepozz)
+[GitHub](https://github.com/xepozz/git-codeowners-intellij-plugin) | [Telegram](https://t.me/jb_plugins/9) | [Donation](https://github.com/xepozz/xepozz?tab=readme-ov-file#become-a-sponsor)
 
 ## CODEOWNERS support
 

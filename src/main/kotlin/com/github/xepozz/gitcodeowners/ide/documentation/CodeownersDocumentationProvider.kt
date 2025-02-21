@@ -6,7 +6,6 @@ import com.github.xepozz.gitcodeowners.language.psi.CodeownersDefinition
 import com.intellij.extapi.psi.ASTDelegatePsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.lang.documentation.DocumentationProvider
-import com.intellij.markdown.utils.doc.DocMarkdownToHtmlConverter
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
@@ -15,6 +14,7 @@ import com.intellij.psi.PsiDocCommentBase
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.webSymbols.utils.HtmlMarkdownUtils
 import java.util.function.Consumer
 
 class CodeownersDocumentationProvider : DocumentationProvider {
@@ -48,7 +48,7 @@ class CodeownersDocumentationProvider : DocumentationProvider {
     fun markdownToHtml(string: String, project: Project) = string
         .split("\n")
         .joinToString("\n") { it.replaceFirst(Regex("#+\\s+"), "") }
-        .let { DocMarkdownToHtmlConverter.convert(project, it) }
+        .let { HtmlMarkdownUtils.toHtml(it) }
 
     override fun findDocComment(file: PsiFile, range: TextRange): PsiDocCommentBase? {
         val element = file.findElementAt(range.startOffset) as? PsiComment ?: return null
