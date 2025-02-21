@@ -12,14 +12,10 @@ import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.DumbAware
-import com.intellij.openapi.vcs.ProjectLevelVcsManager
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
-import com.intellij.vcs.log.VcsUser
-import com.intellij.vcs.log.VcsUserEditor
 import com.intellij.vcs.log.VcsUserRegistry
-import com.intellij.vcsUtil.VcsUtil
 
 class CodeownersCompletionContributor : CompletionContributor(), DumbAware {
     init {

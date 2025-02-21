@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.9] - 2025-02-24
+
+- enh: remove useless module dependency
+
 ## [2025.0.8] - 2025-02-21
 
 - fix: broken build
