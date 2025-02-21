@@ -231,6 +231,7 @@ tasks {
             }
             """.trimIndent()
         )
+        keep("class com.github.xepozz.** implements java.io.Serializable {*;}")
         keep("class com.intellij.util.* {*;}")
 
         println("Output directory: ${layout.projectDirectory.dir(outputDir).asPath.absolutePathString()}:1")
