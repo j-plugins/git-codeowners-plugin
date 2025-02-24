@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.10] - 2025-02-26
+
+- feat: support 213+ versions
+
 ## [2025.0.9] - 2025-02-24
 
 - enh: remove useless module dependency
@@ -31,6 +35,3 @@
 - feat: group autocompletion
 - feat: same group highlighting
 - feat: syntax highlighting
-
-[Unreleased]: https://github.com/xepozz/git-codeowners-plugin/compare/v2025.0.5...HEAD
-[2025.0.5]: https://github.com/xepozz/git-codeowners-plugin/commits/v2025.0.5
