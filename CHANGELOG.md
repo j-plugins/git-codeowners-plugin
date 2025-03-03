@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.11] - 2025-03-03
+
+- feat: support 213+ versions
+
 ## [2025.0.10] - 2025-02-26
 
 - feat: support 213+ versions
