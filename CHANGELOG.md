@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.12] - 2025-03-05
+
+- fix: highlighting variables references
+
 ## [2025.0.11] - 2025-03-03
 
 - feat: support 213+ versions
