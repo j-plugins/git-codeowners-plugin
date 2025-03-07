@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.13] - 2025-03-08
+
+- fix: accessing field by not obfuscated name
+
 ## [2025.0.12] - 2025-03-05
 
 - fix: highlighting variables references

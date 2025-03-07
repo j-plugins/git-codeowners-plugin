@@ -12,7 +12,6 @@
         <fileType
                 name="Git Codeowners File"
                 implementationClass="com.github.xepozz.gitcodeowners.language.CodeownersFileType"
-                fieldName="INSTANCE"
                 extensions=""
                 language="Codeowners"
                 fileNames="CODEOWNERS"/>
