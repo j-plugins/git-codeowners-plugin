@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.14] - 2025-03-12
+
+- feat: add ability to open code owner in browser
+
 ## [2025.0.13] - 2025-03-08
 
 - fix: accessing field by not obfuscated name
