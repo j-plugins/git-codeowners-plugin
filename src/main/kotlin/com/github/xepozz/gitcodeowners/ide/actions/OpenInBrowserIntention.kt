@@ -1,10 +1,10 @@
 package com.github.xepozz.gitcodeowners.ide.actions
 
+import com.github.xepozz.gitcodeowners.CodeownersIcons
 import com.github.xepozz.gitcodeowners.ide.CodeownersIdeUtils
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPsiTreeUtils
 import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction
 import com.intellij.codeInsight.intention.preview.IntentionPreviewInfo
-import com.intellij.icons.AllIcons
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
@@ -25,7 +25,11 @@ class OpenInBrowserIntention : PsiElementBaseIntentionAction(), Iconable, DumbAw
         }
     }
 
-    override fun isAvailable(project: Project, editor: Editor?, element: PsiElement) = true
+    override fun isAvailable(project: Project, editor: Editor?, element: PsiElement): Boolean {
+        val team = CodeownersPsiTreeUtils.findTeam(element)
+
+        return team != null
+    }
 
     override fun generatePreview(project: Project, editor: Editor, file: PsiFile) = IntentionPreviewInfo.EMPTY
 
@@ -33,5 +37,5 @@ class OpenInBrowserIntention : PsiElementBaseIntentionAction(), Iconable, DumbAw
 
     override fun getText() = "Open in browser"
 
-    override fun getIcon(flags: Int) = AllIcons.Ide.External_link_arrow
+    override fun getIcon(flags: Int) = CodeownersIcons.FILE
 }

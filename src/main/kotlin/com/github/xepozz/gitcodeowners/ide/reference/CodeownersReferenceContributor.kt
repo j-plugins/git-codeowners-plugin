@@ -3,19 +3,16 @@ package com.github.xepozz.gitcodeowners.ide.reference
 import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTeam
-import com.intellij.ide.impl.ProjectUtil
 import com.intellij.openapi.paths.PathReferenceManager
 import com.intellij.openapi.projectRoots.impl.ProjectRootUtil
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileSystemItem
-import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiReference
 import com.intellij.psi.PsiReferenceBase
 import com.intellij.psi.PsiReferenceContributor
 import com.intellij.psi.PsiReferenceProvider
 import com.intellij.psi.PsiReferenceRegistrar
-import com.intellij.psi.impl.source.resolve.reference.PsiReferenceUtil
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet
 import com.intellij.util.ProcessingContext
 
@@ -79,10 +76,7 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
             psiElement: PsiElement,
             processingContext: ProcessingContext
         ): Array<out PsiReference> {
-            val toTypedArray = listOf(PsiReferenceBase.createSelfReference(psiElement, psiElement))
-                .toTypedArray()
-            println("to $toTypedArray")
-            return toTypedArray
+            return arrayOf(PsiReferenceBase.createSelfReference(psiElement, psiElement))
         }
     }
 }

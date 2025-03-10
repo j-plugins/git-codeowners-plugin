@@ -5,20 +5,26 @@ import com.intellij.psi.PsiElement
 
 object CodeownersIdeUtils {
     fun openInBrowser(crontabSchedule: PsiElement) {
-        BrowserUtil.browse(
-            generateCrontabGuruUrl(crontabSchedule)
-        )
+        val url = generateUrl(crontabSchedule)
+        if (url != null) {
+            println("url: $url")
+            BrowserUtil.browse(url)
+        }
     }
 
-    fun generateCrontabGuruUrl(element: PsiElement): String {
-        val owners = element.text.substringAfter("@").split("/")
+    fun generateUrl(element: PsiElement): String? {
+        val text = element.text
+        if (!text.startsWith("@")) return null
 
-        if (owners.isEmpty()) {
-            return "https://github.com/xepozz"
-        }
+        val owners = text.substringAfter("@").split("/")
+
+        if (owners.isEmpty()) return null
+
+        val platformUrl = "https://github.com"
+
         if (owners.size == 1) {
-            return "https://github.com/${owners[0]}"
+            return "$platformUrl/${owners[0]}"
         }
-        return "https://github.com/orgs/${owners[0]}/teams/${owners[1]}"
+        return "$platformUrl/orgs/${owners[0]}/teams/${owners[1]}"
     }
 }

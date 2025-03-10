@@ -16,6 +16,7 @@ class OpenInBrowserAction : AnAction() {
 
         val team = CodeownersPsiTreeUtils.findTeam(psiElement)
 
+//        println("team1: $team")
         if (team != null) {
             CodeownersIdeUtils.openInBrowser(team)
         }
@@ -27,6 +28,8 @@ class OpenInBrowserAction : AnAction() {
         val psiElement = psiFile.findElementAt(editor.caretModel.offset) ?: return
 
         val team = CodeownersPsiTreeUtils.findTeam(psiElement)
+
+//        println("team2: $team")
 
         event.presentation.isEnabledAndVisible = team != null
     }
