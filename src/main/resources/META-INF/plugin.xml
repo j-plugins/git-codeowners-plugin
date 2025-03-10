@@ -31,9 +31,6 @@
         <!--        <runLineMarkerContributor-->
         <!--                language="Codeowners"-->
         <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersRunCommandMarkerContributor"/>-->
-        <!--        <lang.foldingBuilder-->
-        <!--                language="Codeowners"-->
-        <!--                implementationClass="com.github.xepozz.gitcodeowners.ide.CronScheduleFoldingBuilder"/>-->
         <lang.documentationProvider
                 language="Codeowners"
                 implementationClass="com.github.xepozz.gitcodeowners.ide.documentation.CodeownersDocumentationProvider"/>
@@ -61,10 +58,22 @@
                 forClass="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersElementImpl"
                 implementationClass="com.github.xepozz.gitcodeowners.language.psi.CodeownersElementManipulator" />
 
-        <!--        <intentionAction>-->
-        <!--            <language>Codeowners</language>-->
-        <!--            <className>com.github.xepozz.gitcodeowners.ide.actions.CodeownersGuruIntention</className>-->
-        <!--            <category>Codeowners intentions</category>-->
-        <!--        </intentionAction>-->
+        <intentionAction>
+            <language>Codeowners</language>
+            <className>com.github.xepozz.gitcodeowners.ide.actions.OpenInBrowserIntention</className>
+            <category>Codeowners intentions</category>
+        </intentionAction>
     </extensions>
+
+    <actions>
+        <action id="Codeowners.OpenInBrowserAction" popup="false"
+                class="com.github.xepozz.gitcodeowners.ide.actions.OpenInBrowserAction"
+                text="Open in Remote Repository"
+                description="Opens the owner in the browser from the remote repository"
+                icon="/icons/plugin/icon.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <add-to-group group-id="Floating.CodeToolbar.Extract" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

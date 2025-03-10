@@ -1,4 +1,4 @@
-package com.github.xepozz.crontab.ide.documentation
+package com.github.xepozz.gitcodeowners.ide.documentation
 
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTypes
 import com.intellij.psi.PsiComment

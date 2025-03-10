@@ -1,6 +1,5 @@
 package com.github.xepozz.gitcodeowners.ide.documentation
 
-import com.github.xepozz.crontab.ide.documentation.CodeownersDocumentationUtils
 import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersDefinition
 import com.intellij.extapi.psi.ASTDelegatePsiElement
@@ -19,7 +18,7 @@ import java.util.function.Consumer
 class CodeownersDocumentationProvider : DocumentationProvider {
     override fun getUrlFor(element: PsiElement?, originalElement: PsiElement?): List<String>? {
 //        if (element !is CodeownersSchedule) return null
-//        return listOf(CodeownersGuruUtils.generateCrontabGuruUrl(element))
+//        return listOf(CodeownersIdeUtils.generateCrontabGuruUrl(element))
         return null
     }
 
