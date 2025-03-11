@@ -4,13 +4,11 @@ import com.github.xepozz.gitcodeowners.CodeownersIcons
 import com.github.xepozz.gitcodeowners.ide.CodeownersIdeUtils
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPsiTreeUtils
 import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction
-import com.intellij.codeInsight.intention.preview.IntentionPreviewInfo
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiFile
 
 class OpenInBrowserIntention : PsiElementBaseIntentionAction(), Iconable, DumbAware {
     override fun invoke(
@@ -30,8 +28,6 @@ class OpenInBrowserIntention : PsiElementBaseIntentionAction(), Iconable, DumbAw
 
         return team != null
     }
-
-    override fun generatePreview(project: Project, editor: Editor, file: PsiFile) = IntentionPreviewInfo.EMPTY
 
     override fun getFamilyName() = "Codeowners intentions"
 

@@ -3,7 +3,6 @@ package com.github.xepozz.gitcodeowners.ide.actions
 import com.github.xepozz.gitcodeowners.ide.CodeownersIdeUtils
 import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPsiTreeUtils
-import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -33,6 +32,4 @@ class OpenInBrowserAction : AnAction() {
 
         event.presentation.isEnabledAndVisible = team != null
     }
-
-    override fun getActionUpdateThread() = ActionUpdateThread.BGT
 }
