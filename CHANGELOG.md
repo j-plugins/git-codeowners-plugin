@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 
-## [2025.0.14] - 2025-03-12
+## [2025.0.15] - 2025-03-20
 
 - feat: add ability to open code owner in browser
 
