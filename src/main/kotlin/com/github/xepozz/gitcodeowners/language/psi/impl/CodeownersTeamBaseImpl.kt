@@ -1,19 +1,26 @@
 package com.github.xepozz.gitcodeowners.language.psi.impl//package com.github.xepozz.gitcodeowners.language.psi.impl
 
-import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTeam
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTypes
 import com.intellij.icons.AllIcons
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.lang.ASTNode
+import com.intellij.openapi.util.NlsSafe
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiNamedElement
 
-abstract class CodeownersTeamBaseImpl : CodeownersElementImpl, CodeownersTeam {
+abstract class CodeownersTeamBaseImpl : CodeownersElementImpl, CodeownersTeam, PsiNamedElement {
     constructor(node: ASTNode) : super(node)
 
     override fun getText(): String {
         val keyNode = this.node.findChildByType(CodeownersTypes.TEXT)
 
         return keyNode?.text ?: ""
+    }
+
+    override fun getName() = text
+    override fun setName(name: @NlsSafe String): PsiElement? {
+        TODO("Not yet implemented")
     }
 
     override fun getPresentation() = PresentationData(text, null, getIcon(0), null)

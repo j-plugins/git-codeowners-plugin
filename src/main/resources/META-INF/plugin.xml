@@ -51,12 +51,12 @@
                 language="Codeowners"
                 implementationClass="com.github.xepozz.gitcodeowners.ide.CodeownersLineMarkerProvider"/>
         <highlightRangeExtension
-                implementation="com.github.xepozz.gitcodeowners.ide.IgnoreHighlightRangeExtension" />
+                implementation="com.github.xepozz.gitcodeowners.ide.IgnoreHighlightRangeExtension"/>
         <highlightUsagesHandlerFactory
-            implementation="com.github.xepozz.gitcodeowners.ide.CodeownersHighlightUsagesHandlerFactory" />
+                implementation="com.github.xepozz.gitcodeowners.ide.CodeownersHighlightUsagesHandlerFactory"/>
         <lang.elementManipulator
                 forClass="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersElementImpl"
-                implementationClass="com.github.xepozz.gitcodeowners.language.psi.CodeownersElementManipulator" />
+                implementationClass="com.github.xepozz.gitcodeowners.language.psi.CodeownersElementManipulator"/>
 
         <intentionAction>
             <language>Codeowners</language>

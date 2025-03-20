@@ -30,7 +30,7 @@ pattern ::= TEXT
 }
 team ::= TEXT
 {
-    implements=["com.intellij.psi.NavigatablePsiElement"]
+    implements=["com.intellij.psi.NavigatablePsiElement" "com.intellij.psi.PsiNamedElement"]
     extends="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersTeamBaseImpl"
 }
 
