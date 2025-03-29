@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [2025.0.15] - 2025-03-29
+
+- enh: update deps
+
 ## [2025.0.15] - 2025-03-20
 
 - feat: add ability to open code owner in browser
