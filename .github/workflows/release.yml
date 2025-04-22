@@ -70,4 +70,4 @@ jobs:
           tag_name: v${{ steps.version.outputs.version }}
           generate_release_notes: true
           files:
-            build/distributions/Git Codeowners-${{ steps.version.outputs.version }}.zip
+            build/distributions/Git\ Codeowners-${{ steps.version.outputs.version }}.zip
