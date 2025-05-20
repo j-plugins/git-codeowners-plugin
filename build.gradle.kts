@@ -1,9 +1,8 @@
-import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.intellij.platform.gradle.utils.asPath
 import java.nio.charset.Charset
-import java.util.Properties
+import java.util.*
 import kotlin.io.path.absolutePathString
 
 fun prop(name: String) = providers.gradleProperty(name).get()
@@ -95,7 +94,6 @@ intellijPlatform {
 
         ideaVersion {
             sinceBuild = providers.gradleProperty("pluginSinceBuild")
-            untilBuild = providers.gradleProperty("pluginUntilBuild")
         }
     }
 
