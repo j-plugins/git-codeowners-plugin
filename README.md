@@ -1,12 +1,12 @@
 # Git Codeowners
 
-![Build](https://github.com/xepozz/git-codeowners-plugin/workflows/Build/badge.svg)
+![Build](https://github.com/j-plugins/git-codeowners-plugin/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/26491-git-codeowners.svg)](https://plugins.jetbrains.com/plugin/26491-git-codeowners)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/26491-git-codeowners.svg)](https://plugins.jetbrains.com/plugin/26491-git-codeowners)
 
 <!-- Plugin description -->
 
-[GitHub](https://github.com/xepozz/git-codeowners-intellij-plugin) | [Telegram](https://t.me/jb_plugins/9) | [Donation](https://github.com/xepozz/xepozz?tab=readme-ov-file#become-a-sponsor)
+[GitHub](https://github.com/j-plugins/git-codeowners-plugin) | [Telegram](https://t.me/jb_plugins/9) | [Donation](https://github.com/xepozz/xepozz?tab=readme-ov-file#become-a-sponsor)
 
 ## CODEOWNERS support
 
@@ -35,3 +35,21 @@ Chose the best option for you to say thank you:
 [<img height="28" src="https://boosty.to/favicon.ico"> Boosty](https://boosty.to/xepozz)
 
 <!-- Plugin description end -->
+
+
+## Screenshots
+
+#### Basic usage
+
+![basic.png](docs/screenshots/basic1.png)
+
+#### Completion
+
+![completion.png](docs/screenshots/completion.png)
+
+#### Reference and navigation
+
+![references.png](docs/screenshots/references.png)
+
+
+
