@@ -4,6 +4,7 @@ import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersPattern
 import com.github.xepozz.gitcodeowners.language.psi.CodeownersTeam
 import com.intellij.openapi.paths.PathReferenceManager
+import com.intellij.openapi.paths.WebReference
 import com.intellij.openapi.projectRoots.impl.ProjectRootUtil
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.PsiElement
@@ -76,7 +77,24 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
             psiElement: PsiElement,
             processingContext: ProcessingContext
         ): Array<out PsiReference> {
-            return arrayOf(PsiReferenceBase.createSelfReference(psiElement, psiElement))
+            var text = psiElement.text
+
+            val reference = when{
+                text.startsWith('@') -> {
+                    text = text.substringAfter("@")
+                    when {
+                       text.contains('/') -> WebReference(psiElement, "https://github.com/orgs/${text.split('/')[0]}/teams/${text.split('/')[1]}")
+                       else -> WebReference(psiElement, "https://github.com/$text")
+                    }
+                }
+                text.contains('@') && text.contains('.') -> WebReference(psiElement, "mailto://$text")
+                else -> null
+            }
+
+            return arrayOf(
+                PsiReferenceBase.createSelfReference(psiElement, psiElement),
+                reference,
+            ).filterNotNull().toTypedArray()
         }
     }
 }
