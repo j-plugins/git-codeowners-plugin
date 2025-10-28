@@ -14,7 +14,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.guardsquare:proguard-gradle:7.8.0")
+        classpath("com.guardsquare:proguard-gradle:7.8.1")
     }
 }
 val envProperties =  Properties()
