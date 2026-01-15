@@ -57,6 +57,8 @@
         <lang.elementManipulator
                 forClass="com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersElementImpl"
                 implementationClass="com.github.xepozz.gitcodeowners.language.psi.CodeownersElementManipulator"/>
+        <editorNotificationProvider
+            implementation="com.github.xepozz.gitcodeowners.ide.editor.EditorNotificationProvider"/>
 
         <intentionAction>
             <language>Codeowners</language>
