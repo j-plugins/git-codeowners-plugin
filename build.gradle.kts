@@ -41,14 +41,6 @@ sourceSets {
         }
     }
 }
-// Set the JVM language level used to build the project.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
 
 kotlin {
     jvmToolchain(21)
