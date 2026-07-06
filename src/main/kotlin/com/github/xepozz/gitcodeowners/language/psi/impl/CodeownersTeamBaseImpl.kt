@@ -20,7 +20,10 @@ abstract class CodeownersTeamBaseImpl : CodeownersElementImpl, CodeownersTeam, P
 
     override fun getName() = text
     override fun setName(name: @NlsSafe String): PsiElement? {
-        TODO("Not yet implemented")
+        val newTeam = com.github.xepozz.gitcodeowners.language.psi.CodeownersElementFactory.createTeam(project, name)
+            ?: return this
+
+        return replace(newTeam)
     }
 
     override fun getPresentation() = PresentationData(text, null, getIcon(0), null)

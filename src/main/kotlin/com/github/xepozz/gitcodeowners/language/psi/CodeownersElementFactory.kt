@@ -3,6 +3,7 @@ package com.github.xepozz.gitcodeowners.language.psi
 import com.github.xepozz.gitcodeowners.language.CodeownersFile
 import com.github.xepozz.gitcodeowners.language.CodeownersFileType
 import com.intellij.openapi.project.Project
+import com.intellij.psi.util.PsiTreeUtil
 
 object CodeownersElementFactory {
 //    fun createCodeownersTimeList(project: Project, values: List<String>): CodeownersTimeList {
@@ -26,5 +27,15 @@ object CodeownersElementFactory {
         val name = "dummy.gitcodeowners"
         return com.intellij.psi.PsiFileFactory.getInstance(project)
             .createFileFromText(name, CodeownersFileType.INSTANCE, text) as CodeownersFile
+    }
+
+    fun createPattern(project: Project, text: String): CodeownersPattern? {
+        val file = createFile(project, "$text @owner")
+        return PsiTreeUtil.findChildOfType(file, CodeownersPattern::class.java)
+    }
+
+    fun createTeam(project: Project, text: String): CodeownersTeam? {
+        val file = createFile(project, "/dummy $text")
+        return PsiTreeUtil.findChildOfType(file, CodeownersTeam::class.java)
     }
 }

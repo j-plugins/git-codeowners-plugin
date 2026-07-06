@@ -7,7 +7,6 @@ object CodeownersIdeUtils {
     fun openInBrowser(crontabSchedule: PsiElement) {
         val url = generateUrl(crontabSchedule)
         if (url != null) {
-            println("url: $url")
             BrowserUtil.browse(url)
         }
     }
@@ -16,9 +15,11 @@ object CodeownersIdeUtils {
         val text = element.text
         if (!text.startsWith("@")) return null
 
-        val owners = text.substringAfter("@").split("/")
+        val ownerText = text.removePrefix("@")
+        if (ownerText.isBlank()) return null
 
-        if (owners.isEmpty()) return null
+        val owners = ownerText.split("/")
+        if (owners.any { it.isBlank() } || owners.size > 2) return null
 
         val platformUrl = "https://github.com"
 

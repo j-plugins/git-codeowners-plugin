@@ -45,21 +45,32 @@ class CodeownersReferenceContributor : PsiReferenceContributor() {
 
 //                    val ref = FileIndexPathReferenceProvider(GlobalSearchScope.projectScope(project))
 
-                    return referenceManager.createReferences(
-                        psiElement,
-                        true,
-                        false,
-                        false,
-//                        ref,
-                    )
+                    if (!psiElement.text.startsWith("/")) {
+                        return referenceManager.createReferences(
+                            psiElement,
+                            true,
+                            false,
+                            false,
+//                            ref,
+                        )
+                    }
 
-                    val referenceSet = object : FileReferenceSet(psiElement) {
-                        override fun computeDefaultContexts(): Collection<PsiFileSystemItem?> {
-                            if (element.text.startsWith("/")) {
-                                return listOf(projectPsi)
-                            }
-                            return super.computeDefaultContexts()
+                    val referenceSet = object : FileReferenceSet(psiElement.text.removePrefix("/"), psiElement, 1, null, true) {
+                        override fun computeDefaultContexts(): Collection<PsiFileSystemItem> {
+                            return listOf(projectPsi)
                         }
+
+                        override fun createFileReference(range: com.intellij.openapi.util.TextRange, index: Int, text: String) =
+                            object : com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReference(this, range, index, text) {
+                                override fun getRangeInElement(): com.intellij.openapi.util.TextRange {
+                                    val rangeInElement = super.getRangeInElement()
+                                    return if (rangeInElement.startOffset == 1) {
+                                        rangeInElement
+                                    } else {
+                                        rangeInElement.shiftRight(1)
+                                    }
+                                }
+                            }
                     }
                     val result = referenceSet.allReferences
 //                    println("result: ${result.toList().map { println("it: $it") }}")

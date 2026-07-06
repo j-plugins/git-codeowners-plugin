@@ -9,6 +9,7 @@ import com.intellij.codeInsight.completion.CompletionParameters
 import com.intellij.codeInsight.completion.CompletionProvider
 import com.intellij.codeInsight.completion.CompletionResultSet
 import com.intellij.codeInsight.completion.CompletionType
+import com.intellij.codeInsight.completion.CompletionUtilCore
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.DumbAware
@@ -34,12 +35,20 @@ class CodeownersCompletionContributor : CompletionContributor(), DumbAware {
 
                     var result = result
                     val hasDogPrefix = team.text.startsWith("@")
+                    if (hasDogPrefix) {
+                        val prefix = team.text.removePrefix("@")
+                            .replace(CompletionUtilCore.DUMMY_IDENTIFIER_TRIMMED, "")
+                            .replace(CompletionUtilCore.DUMMY_IDENTIFIER, "")
+                        result = result.withPrefixMatcher(prefix)
+                    }
 
                     PsiTreeUtil.findChildrenOfType(file, CodeownersTeam::class.java)
                         .filter { it !== team }
+                        .map { it.text }
+                        .distinct()
                         .forEach {
                             result.addElement(
-                                LookupElementBuilder.create(if (hasDogPrefix) it.text.substring(1) else it.text)
+                                LookupElementBuilder.create(if (hasDogPrefix && it.startsWith("@")) it.substring(1) else it)
                                     .withIcon(CodeownersIcons.FILE)
                             )
                         }

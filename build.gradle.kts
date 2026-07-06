@@ -18,7 +18,10 @@ buildscript {
     }
 }
 val envProperties =  Properties()
-envProperties.load(file(".env").reader(Charset.forName("UTF-8")))
+val envFile = file(".env")
+if (envFile.isFile) {
+    envProperties.load(envFile.reader(Charset.forName("UTF-8")))
+}
 
 plugins {
     id("java") // Java support
@@ -39,8 +42,16 @@ sourceSets {
     }
 }
 // Set the JVM language level used to build the project.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 // Configure project's dependencies
@@ -62,11 +73,11 @@ dependencies {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
 
         // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
-        bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
+        bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',').filter(String::isNotBlank) })
         bundledModule("intellij.platform.vcs.impl")
 
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
-        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        plugins(providers.gradleProperty("platformPlugins").map { it.split(',').filter(String::isNotBlank) })
 
         pluginVerifier()
         zipSigner()
@@ -104,7 +115,8 @@ intellijPlatform {
     }
 
     publishing {
-        token = provider { envProperties["PUBLISH_TOKEN"] as String }
+        token = providers.environmentVariable("PUBLISH_TOKEN")
+            .orElse(provider { envProperties.getProperty("PUBLISH_TOKEN").orEmpty() })
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
@@ -135,6 +147,13 @@ tasks {
     }
 
     publishPlugin {
+        doFirst {
+            val publishToken = providers.environmentVariable("PUBLISH_TOKEN").orNull
+                ?: envProperties.getProperty("PUBLISH_TOKEN")
+            if (publishToken.isNullOrBlank()) {
+                throw GradleException("PUBLISH_TOKEN is required to publish the plugin. Set it as an environment variable or in .env.")
+            }
+        }
     }
 
     // https://plugins.jetbrains.com/docs/marketplace/obfuscate-the-plugin.html#proguard
@@ -144,8 +163,11 @@ tasks {
         dependsOn(instrumentedJar)
         verbose()
 
-        val javaHome = System.getProperty("java.home")
-        File("$javaHome/jmods/").listFiles().forEach { libraryjars(it.absolutePath) }
+        val javaToolchainService = project.extensions.getByType(JavaToolchainService::class.java)
+        val javaHome = javaToolchainService.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }.get().metadata.installationPath.asFile
+        File(javaHome, "jmods").listFiles().orEmpty().forEach { libraryjars(it.absolutePath) }
 
         // Use the jar task output as a input jar. This will automatically add the necessary task dependency.
         val pluginName = rootProject.name + "-" + prop("pluginVersion")
@@ -174,7 +196,7 @@ tasks {
         dontwarn()
 
         printmapping("$outputDir$pluginName-ProGuard-ChangeLog.txt")
-        target(prop("pluginVersion"))
+        target("21")
 
         adaptresourcefilenames()
         optimizationpasses(9)

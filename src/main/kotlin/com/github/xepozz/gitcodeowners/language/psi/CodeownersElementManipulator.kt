@@ -3,25 +3,25 @@ package com.github.xepozz.gitcodeowners.language.psi
 
 import com.github.xepozz.gitcodeowners.language.CodeownersFileType
 import com.github.xepozz.gitcodeowners.language.CodeownersLanguage
-import com.github.xepozz.gitcodeowners.language.psi.CodeownersElementFactory
 import com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersElementImpl
+import com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersPatternBaseImpl
+import com.github.xepozz.gitcodeowners.language.psi.impl.CodeownersTeamBaseImpl
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.AbstractElementManipulator
-import com.intellij.psi.PsiFileFactory
-import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.IncorrectOperationException
 
 class CodeownersElementManipulator : AbstractElementManipulator<CodeownersElementImpl>() {
 
     @Throws(IncorrectOperationException::class)
     override fun handleContentChange(entry: CodeownersElementImpl, range: TextRange, newContent: String): CodeownersElementImpl {
-        val language = entry.language as? CodeownersLanguage ?: return entry
+        if (entry.language !is CodeownersLanguage || entry.language.associatedFileType !is CodeownersFileType) return entry
+        val updatedText = range.replace(entry.text, newContent)
 
-        val fileType = language.associatedFileType as CodeownersFileType
-        val file = CodeownersElementFactory
-            .createFile(entry.project, entry.text)
-
-        val newEntry = PsiTreeUtil.findChildOfType(file, CodeownersElementImpl::class.java)
+        val newEntry = when (entry) {
+            is CodeownersPatternBaseImpl -> CodeownersElementFactory.createPattern(entry.project, updatedText)
+            is CodeownersTeamBaseImpl -> CodeownersElementFactory.createTeam(entry.project, updatedText)
+            else -> null
+        }
 
         return when (newEntry) {
             null -> entry

@@ -28,6 +28,7 @@ class CodeownersHighlightUsagesHandlerFactory : HighlightUsagesHandlerFactoryBas
                 targets: List<CodeownersElementImpl?>,
                 selectionConsumer: Consumer<in MutableList<out CodeownersElementImpl>>
             ) {
+                selectionConsumer.consume(targets.filterNotNull().toMutableList())
             }
 
             override fun computeUsages(targets: List<CodeownersElementImpl>) =

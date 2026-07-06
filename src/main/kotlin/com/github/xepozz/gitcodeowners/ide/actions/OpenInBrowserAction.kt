@@ -23,15 +23,15 @@ class OpenInBrowserAction : AnAction() {
     }
 
     override fun update(event: AnActionEvent) {
+        event.presentation.isEnabledAndVisible = false
+
         val editor = event.getData(CommonDataKeys.EDITOR) ?: return
         val psiFile = event.getData(CommonDataKeys.PSI_FILE) as? CodeownersFile ?: return
         val psiElement = psiFile.findElementAt(editor.caretModel.offset) ?: return
 
         val team = CodeownersPsiTreeUtils.findTeam(psiElement)
 
-//        println("team2: $team")
-
-        event.presentation.isEnabledAndVisible = team != null
+        event.presentation.isEnabledAndVisible = team?.let { CodeownersIdeUtils.generateUrl(it) } != null
     }
 
     override fun getActionUpdateThread() = ActionUpdateThread.BGT

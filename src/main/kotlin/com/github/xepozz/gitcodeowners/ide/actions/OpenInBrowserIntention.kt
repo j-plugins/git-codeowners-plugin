@@ -26,7 +26,7 @@ class OpenInBrowserIntention : PsiElementBaseIntentionAction(), Iconable, DumbAw
     override fun isAvailable(project: Project, editor: Editor?, element: PsiElement): Boolean {
         val team = CodeownersPsiTreeUtils.findTeam(element)
 
-        return team != null
+        return team?.let { CodeownersIdeUtils.generateUrl(it) } != null
     }
 
     override fun getFamilyName() = "Codeowners intentions"
